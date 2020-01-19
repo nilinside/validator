@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/stvp/rollbar"
+	"gopkg.in/go-playground/validator.v9"
 	"net/http"
 	"reflect"
 	"regexp"
