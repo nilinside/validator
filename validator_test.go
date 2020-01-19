@@ -1,7 +1,6 @@
 package validator
 
 import (
-	"gopkg.in/go-playground/validator.v8"
 	"testing"
 )
 
@@ -51,35 +50,4 @@ func TestSplit(t *testing.T) {
 			t.Error("Test Failed: {} inputted, {} expected, received: {}", test.input, test.expected, output)
 		}
 	}
-}
-
-func TestValidationErrorToText(t *testing.T) {
-	validate := []ExtraValidation{
-		{Tag: "test", Message: "%s is passed!"},
-	}
-	MakeExtraValidation(validate)
-
-	error1 := validator.FieldError{}
-	error1.Tag = "required"
-	error1.Field = "firstName"
-
-	error2 := validator.FieldError{}
-	error2.Tag = "test"
-	error2.Field = "thisTest"
-
-	var tests = []struct {
-		input    *validator.FieldError
-		expected string
-	}{
-		{&error1, "First name is required!"},
-		{&error2, "This test is passed!"},
-	}
-
-	for _, test := range tests {
-		if output := ValidationErrorToText(test.input); output != test.expected {
-			t.Error("Test Failed: {} inputted, {} expected, received: {}", test.input, test.expected, output)
-		}
-
-	}
-
 }
